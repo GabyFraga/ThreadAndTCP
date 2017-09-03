@@ -1,5 +1,4 @@
 import java.net.*;
-import java.util.Scanner;
 
 public class Servidor {
 
@@ -10,23 +9,22 @@ public class Servidor {
             //joga a excecao caso a porta nao esteja liberada e o socket nao possa ser criado
 
             ServerSocket servidor = new ServerSocket(8080);
-
             System.out.println("Porta 8080 aberta!");
 
-            Socket cliente = servidor.accept();
-            Scanner scanner = new Scanner(cliente.getInputStream());
+            while(true) {
 
-            System.out.println("Nova conexão com o cliente " + cliente.getInetAddress().getHostAddress());
+                //cria uma thread com um objeto de tratamento para cada cliente conectado
+                //o codigo do servidor interagindo com o cliente e colocado na classe de tratamento
 
-            while (scanner.hasNextLine()){
+                Socket cliente = servidor.accept();
+                TratamentoThread tratamentoThread = new TratamentoThread(cliente);
 
-                System.out.println(scanner.nextLine());
+                System.out.println("Nova conexão com o cliente " + cliente.getInetAddress().getHostAddress());
+
+                Thread thread = new Thread(tratamentoThread);
+
+                thread.start();
             }
-
-            scanner.close();
-            cliente.close();
-            servidor.close();
-
         }catch(Exception e){
 
             System.out.println("Exceção: " + e);
