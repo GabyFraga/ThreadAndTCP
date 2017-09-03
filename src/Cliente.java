@@ -48,7 +48,7 @@ public class Cliente {
 
         Cliente client = new Cliente();
 
-        client.connect("127.0.0.1", (short) 8080); 
+        client.connect("127.0.0.1", (short) 8080);
 
     }
 }

@@ -2,14 +2,27 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class TratamentoThread implements Runnable {
+public class TratamentoThreadServidor implements Runnable {
 
     private Socket socket;
+    private Servidor servidor;
 
-    public TratamentoThread(Socket socket){
+    public TratamentoThreadServidor(Socket socket, Servidor servidor){
 
         this.socket = socket;
+        this.servidor = servidor;
 
+    }
+
+    public void setSoservidor(Servidor servidor){
+
+        this.servidor = servidor;
+
+    }
+
+    public Servidor getServidor(Servidor servidor){
+
+        return this.servidor;
     }
 
     public void setSocket(Socket socket){
@@ -24,7 +37,6 @@ public class TratamentoThread implements Runnable {
     }
 
     /**
-     *
      * executa o codigo do servidor para lidar com o cliente.
      * no caso, receber a mensagem do cliente conectado
      */
@@ -37,12 +49,12 @@ public class TratamentoThread implements Runnable {
 
             while (scanner.hasNextLine()) {
 
-                System.out.println(scanner.nextLine());
+                servidor.repasseDeMensagem(scanner.nextLine());
 
             }
         }catch(Exception e){
 
-            System.out.println("Exceção na classe TratamentoThread: " + e);
+            System.out.println("Exceção na classe TratamentoThreadServidor: " + e);
         }
     }
 }
