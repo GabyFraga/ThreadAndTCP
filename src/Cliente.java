@@ -6,12 +6,18 @@ import java.util.Scanner;
 
 public class Cliente {
 
-    public static void main(String[] args)throws UnknownHostException, IOException {
+    public void iniciar() throws IOException{
 
         Socket cliente = new Socket("127.0.0.1", 8080);
 
         Scanner teclado = new Scanner(System.in);
         PrintStream saida = new PrintStream(cliente.getOutputStream());
+
+        TratamentoThreadCliente tratamentoThreadCliente = new TratamentoThreadCliente(cliente);
+
+        Thread thread = new Thread(tratamentoThreadCliente);
+
+        thread.start();
 
         while(teclado.hasNextLine()){
 
@@ -22,5 +28,22 @@ public class Cliente {
         saida.close();
         teclado.close();
         cliente.close();
+
+    }
+
+    public static void main(String[] args)throws UnknownHostException, IOException {
+
+        try {
+
+            Cliente cliente = new Cliente();
+
+            cliente.iniciar();
+
+        }catch(Exception e){
+
+            System.out.println("Exceção: " + e);
+
+        }
+
     }
 }
