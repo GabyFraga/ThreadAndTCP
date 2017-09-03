@@ -6,10 +6,34 @@ import java.util.Scanner;
 
 public class Cliente {
 
+	
+	private Socket cliente;
+	
+	
+	public void connect(String address, short port) {
+		try {
+			cliente = new Socket(address, port);
+			System.out.println("Cliente conectado no servidor na porta "+ port);
+			cliente.close();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
     public static void main(String[] args)throws UnknownHostException, IOException {
 
-        Socket cliente = new Socket("127.0.0.1", 8080);
-
+        
+    	
+    	
+    	Cliente client = new Cliente();
+    	client.connect("127.0.0.1", (short) 12346);
+    	/*
         Scanner teclado = new Scanner(System.in);
         PrintStream saida = new PrintStream(cliente.getOutputStream());
 
@@ -20,7 +44,7 @@ public class Cliente {
         }
 
         saida.close();
-        teclado.close();
-        cliente.close();
+        teclado.close();*/
+        
     }
 }
