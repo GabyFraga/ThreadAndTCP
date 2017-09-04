@@ -1,3 +1,6 @@
+package clienteEServidor;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.*;
@@ -12,6 +15,7 @@ public class Servidor {
     private final short PORT = 8080;
     private short clientCount = 0;
     private List<PrintStream> clientes;
+    JFrame frame = new JFrame("Sem Nome");
 
     public Servidor(){
 
@@ -38,6 +42,9 @@ public class Servidor {
         //joga a excecao caso a porta nao esteja liberada e o socket nao possa ser criado
 
         try{
+
+            JOptionPane.showMessageDialog(frame,
+                    "Servidor criado! O endereço IP é: " + "127.0.0.1");
 
         while(true) {
 
@@ -76,9 +83,9 @@ public class Servidor {
 
     }
 
-    public static void main (String[] args){
+    /*public static void main (String[] args){
 
         Servidor server = new Servidor();
         server.start();
-    }
+    }*/
 }

@@ -1,4 +1,8 @@
+package clienteEServidor;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -7,10 +11,15 @@ import java.util.Scanner;
 public class Cliente {
 
     private Socket cliente;
+    public String nome;
+    public boolean online = true;
 
     public void connect(String address, short port) throws IOException{
 
-        try {
+            BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+
+            System.out.println("Digite um nome para começar a jogar.");
+            nome = bf.readLine();
 
             cliente = new Socket(address, port);
 
@@ -25,7 +34,7 @@ public class Cliente {
 
             thread.start();
 
-            while (teclado.hasNextLine()) {
+            while (online) {
 
                 saida.println(teclado.nextLine());
 
@@ -35,20 +44,13 @@ public class Cliente {
             teclado.close();
             cliente.close();
 
-        } catch (UnknownHostException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
     }
 
-    public static void main(String[] args)throws UnknownHostException, IOException {
+    /*public static void main(String[] args)throws UnknownHostException, IOException {
 
         Cliente client = new Cliente();
 
         client.connect("127.0.0.1", (short) 8080);
 
-    }
+    }*/
 }
