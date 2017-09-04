@@ -1,3 +1,5 @@
+package clienteEServidor;
+
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
@@ -41,7 +43,7 @@ public class TratamentoThreadCliente implements Runnable {
             }
         }catch(Exception e){
 
-            System.out.println("Exceção na classe TratamentoThreadCliente: " + e);
+            System.out.println("Exceção na classe clienteEServidor.TratamentoThreadCliente: " + e);
         }
     }
 }
