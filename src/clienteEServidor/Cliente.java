@@ -46,11 +46,11 @@ public class Cliente {
 
     }
 
-    /*public static void main(String[] args)throws UnknownHostException, IOException {
+    public static void main(String[] args)throws UnknownHostException, IOException {
 
         Cliente client = new Cliente();
 
         client.connect("127.0.0.1", (short) 8080);
 
-    }*/
+    }
 }
