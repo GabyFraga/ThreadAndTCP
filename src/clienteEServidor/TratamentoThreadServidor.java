@@ -55,7 +55,7 @@ public class TratamentoThreadServidor implements Runnable {
             }
         }catch(Exception e){
 
-            System.out.println("Exceção na classe clienteEServidor.TratamentoThreadServidor: " + e);
+            System.out.println("Exceção na classe TratamentoThreadServidor: " + e);
         }
     }
 }

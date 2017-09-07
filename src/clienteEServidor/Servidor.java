@@ -15,7 +15,6 @@ public class Servidor {
     private final short PORT = 8080;
     private short clientCount = 0;
     private List<PrintStream> clientes;
-    JFrame frame = new JFrame("Sem Nome");
 
     public Servidor(){
 
@@ -43,28 +42,25 @@ public class Servidor {
 
         try{
 
-            JOptionPane.showMessageDialog(frame,
-                    "Servidor criado! O endereço IP é: " + "127.0.0.1");
+            while(true) {
 
-        while(true) {
+                //cria uma thread com um objeto de tratamento para cada cliente conectado
+                //o codigo do servidor interagindo com o cliente e colocado na classe de tratamento
 
-            //cria uma thread com um objeto de tratamento para cada cliente conectado
-            //o codigo do servidor interagindo com o cliente e colocado na classe de tratamento
+                Socket cliente = servidor.accept();
+                clientCount++;
 
-            Socket cliente = servidor.accept();
-            clientCount++;
+                PrintStream ps = new PrintStream(cliente.getOutputStream());
+                TratamentoThreadServidor tratamentoThreadServidor = new TratamentoThreadServidor(cliente, this);
 
-            PrintStream ps = new PrintStream(cliente.getOutputStream());
-            TratamentoThreadServidor tratamentoThreadServidor = new TratamentoThreadServidor(cliente, this);
+                this.clientes.add(ps);
 
-            this.clientes.add(ps);
+                System.out.println("Nova conexao com o cliente "+ clientCount+". Endereco:" + cliente.getInetAddress().getHostAddress());
 
-            System.out.println("Nova conexao com o cliente "+ clientCount+". Endereco:" + cliente.getInetAddress().getHostAddress());
+                Thread thread = new Thread(tratamentoThreadServidor);
 
-            Thread thread = new Thread(tratamentoThreadServidor);
-
-            thread.start();
-        }
+                thread.start();
+            }
 
         }catch(Exception e){
 
@@ -83,9 +79,9 @@ public class Servidor {
 
     }
 
-    /*public static void main (String[] args){
+    public static void main (String[] args){
 
         Servidor server = new Servidor();
         server.start();
-    }*/
+    }
 }
