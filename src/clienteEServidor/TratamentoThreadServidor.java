@@ -15,7 +15,7 @@ public class TratamentoThreadServidor implements Runnable {
 
     }
 
-    public void setSoservidor(Servidor servidor){
+    public void setServidor(Servidor servidor){
 
         this.servidor = servidor;
 
