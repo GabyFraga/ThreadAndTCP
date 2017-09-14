@@ -5,19 +5,26 @@
  */
 package clienteEServidor;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Gaby
  */
-public class Partida {
+public class Partida implements Serializable{
     
     public String nome;
-    public int selecao;
     
-    public Partida(String nome, int selecao){
+    public Partida(String nome){
         
         this.nome = nome;
-        this.selecao = selecao;
+        
+    }
+    
+    public void printName(){
+        
+        System.out.println(this.nome);
+        
     }
     
 }
