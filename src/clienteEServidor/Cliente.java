@@ -3,6 +3,8 @@ package clienteEServidor;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -26,9 +28,12 @@ public class Cliente {
             System.out.println("Cliente conectado no servidor na porta " + port);
 
             Scanner teclado = new Scanner(System.in);
-            PrintStream saida = new PrintStream(cliente.getOutputStream());
-
-            TratamentoThreadCliente tratamentoThreadCliente = new TratamentoThreadCliente(cliente);
+            //PrintStream saida = new PrintStream(cliente.getOutputStream());
+            
+            //ObjectInputStream is = new ObjectInputStream(cliente.getInputStream());
+            //ObjectOutputStream saida = new ObjectOutputStream(cliente.getOutputStream());
+            
+            TratamentoThreadCliente tratamentoThreadCliente = new TratamentoThreadCliente(cliente, nome);
 
             Thread thread = new Thread(tratamentoThreadCliente);
 
@@ -36,11 +41,11 @@ public class Cliente {
 
             while (online) {
 
-                saida.println(teclado.nextLine());
+                //saida.println(teclado.nextLine());
 
             }
 
-            saida.close();
+            //saida.close();
             teclado.close();
             cliente.close();
 
