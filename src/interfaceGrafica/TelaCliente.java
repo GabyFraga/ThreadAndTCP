@@ -19,29 +19,29 @@ import javafx.stage.Stage;
  *
  * @author Gaby
  */
-public class TelaPrincipal extends Application {
+public class TelaCliente extends Application {
     
     @Override
-    public void start(Stage primaryStage)throws IOException{
+    public void start(Stage primaryStage) throws IOException{
+               
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("telaCliente.fxml"));
         
-        //        StackPane root = new StackPane();
-//        root.getChildren().add(btn);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("telaPrincipal.fxml"));
-        Scene scene = new Scene(loader.load()); 
+        Scene scene = new Scene(loader.load());
         
-//        Scene scene = new Scene(root, 300, 250);
-//        
-        primaryStage.setTitle("JoKenPo!");
+        primaryStage.setTitle("Dois ou um?");
         primaryStage.setScene(scene);
         primaryStage.show();
-        
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
+        
+        try{
+            launch(args);
+    
+        }catch(Exception e){System.out.println("Exeção: " + e);}
     }
     
 }
