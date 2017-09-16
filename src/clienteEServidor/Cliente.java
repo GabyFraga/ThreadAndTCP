@@ -27,7 +27,7 @@ public class Cliente {
 
             System.out.println("Cliente conectado no servidor na porta " + port);
 
-            Scanner teclado = new Scanner(System.in);
+            //Scanner teclado = new Scanner(System.in);
             //PrintStream saida = new PrintStream(cliente.getOutputStream());
             
             //ObjectInputStream is = new ObjectInputStream(cliente.getInputStream());
@@ -46,7 +46,7 @@ public class Cliente {
             }
 
             //saida.close();
-            teclado.close();
+            //teclado.close();
             cliente.close();
 
     }
