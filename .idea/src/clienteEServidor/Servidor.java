@@ -17,9 +17,8 @@ public class Servidor {
     private ServerSocket servidor;
     private Socket cliente;
     private final short PORT = 8081;
-    private static short clientCount = 0;
-    //private List<ObjectOutputStream> clientes;
-    private HashMap<String, Integer> jogadas;
+    public static short clientCount = 0;
+    public HashMap<String, Integer> jogadas;
     private List<PrintStream> clientes;
 
     public Servidor(){
@@ -40,7 +39,10 @@ public class Servidor {
 
     public void repasseDeMensagem(String mensagem) throws IOException {
 
+        
         for (PrintStream cliente : this.clientes) {
+            
+            System.out.println("mensagem: " + mensagem);
             
             cliente.println(mensagem);
             
@@ -96,6 +98,7 @@ public class Servidor {
     public void addToMatch(Partida partida){
         
         jogadas.put(partida.nome, partida.escolha);
+        System.out.println("fulano de nome : " + partida.nome + " jogou " + jogadas.get(partida.nome));
         
     }
 

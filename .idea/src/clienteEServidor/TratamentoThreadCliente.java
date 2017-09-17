@@ -79,20 +79,23 @@ public class TratamentoThreadCliente implements Runnable {
             
             while(true){
                 
-                //System.out.println(partida.comecaRodada);
+                //if(Servidor.clientCount == 3){
+                
+                System.out.println(partida.comecaRodada);
                 escolha = scanner.nextLine();
                 
                 while(!(escolha.equals("1")) && !(escolha.equals("2"))){
                     
                     System.out.println("Digite apenas \"1\" ou \"2\"");
                     escolha = scanner.nextLine();
-                    partida.escolha = Integer.parseInt(escolha);
-                    
+                
                 }
                 
+                partida.escolha = Integer.parseInt(escolha); 
                 os.writeObject(partida);                
                 //partidaEnvio = (Partida)is.readObject();                
                 
+                //}
             }
                     
         }catch(Exception e){

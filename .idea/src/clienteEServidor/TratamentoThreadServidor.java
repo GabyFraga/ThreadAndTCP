@@ -4,6 +4,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class TratamentoThreadServidor implements Runnable {
@@ -78,7 +79,8 @@ public class TratamentoThreadServidor implements Runnable {
             while(true){
                 Partida partida = (Partida) is.readObject();
                 servidor.addToMatch(partida);
-                servidor.repasseDeMensagem("O jogador " + servidor.getWinner() + "venceu.");
+                servidor.repasseDeMensagem("O jogador " + servidor.getWinner() + " venceu.");
+                
             }
                 
             
